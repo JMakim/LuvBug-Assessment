@@ -7,10 +7,11 @@ public class player : MonoBehaviour
 {
     public GameObject shark;
 
-    public GameObject healthBar;
 
     public float curHP = 3;
     public int score;
+
+    public Text HPtext;
 
     Rigidbody rb;
 
@@ -29,7 +30,7 @@ public class player : MonoBehaviour
     void Update()
     {
         Movement();
-        healthBar.transform.GetComponent<Slider>().value = curHP;
+        HPtext.text = curHP.ToString();
     }
 
     public void Movement()

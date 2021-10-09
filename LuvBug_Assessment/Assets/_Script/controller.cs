@@ -22,6 +22,8 @@ public class controller : MonoBehaviour
     public int score;
     public Text scoreText;
 
+    public GameObject gameOverScreen;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,7 @@ public class controller : MonoBehaviour
 
         Spawn();
         Score();
+        GameOver();
     }
     public void range()
     {
@@ -62,8 +65,16 @@ public class controller : MonoBehaviour
     {
         score = player.GetComponent<player>().score;
         scoreText.text = score.ToString();
-        
+       
+    }
 
-
+    public void GameOver()
+    {
+        if (player.GetComponent<player>().curHP <= 0)
+        {
+            gameOverScreen.SetActive(true);
+            Time.timeScale = 0;
+            
+        }
     }
 }
