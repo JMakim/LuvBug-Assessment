@@ -6,10 +6,19 @@ public class player : MonoBehaviour
 {
     public GameObject shark;
 
+    public GameObject healthBar;
+
+    public int curHP = 3;
+
+    Rigidbody rb;
+
+    GameObject controller;
+
     // Start is called before the first frame update
     void Start()
     {
-        shark = GameObject.Find("shark");
+        controller = GameObject.Find("gameController");
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
