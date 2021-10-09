@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class controller : MonoBehaviour
 {
     public Vector3 Min;
     public Vector3 Max;
-
     public Vector3 random;
-
-    public GameObject spawner;
+    public float yAxis;
 
     public GameObject FishGood;
     public GameObject FishBad;
@@ -17,10 +17,15 @@ public class controller : MonoBehaviour
     public bool goodspawn = true;
     public bool badspawn = true;
 
-    public float yAxis;
+    public GameObject player;
+
+    public int score;
+    public Text scoreText;
+
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("player");
         range();
     }
 
@@ -32,6 +37,7 @@ public class controller : MonoBehaviour
         random = new Vector3(6, yAxis,0);
 
         Spawn();
+        Score();
     }
     public void range()
     {
@@ -51,5 +57,13 @@ public class controller : MonoBehaviour
             Instantiate(FishBad, random, Quaternion.Euler(0F, 0F, 90F));
             badspawn = false;
         }
+    }
+    public void Score()
+    {
+        score = player.GetComponent<player>().score;
+        scoreText.text = score.ToString();
+        
+
+
     }
 }

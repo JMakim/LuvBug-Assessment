@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class player : MonoBehaviour
 {
@@ -8,23 +9,27 @@ public class player : MonoBehaviour
 
     public GameObject healthBar;
 
-    public int curHP = 3;
+    public float curHP = 3;
+    public int score;
 
     Rigidbody rb;
 
-    GameObject controller;
+
+
+    public GameObject controller;
 
     // Start is called before the first frame update
     void Start()
     {
-        controller = GameObject.Find("gameController");
         rb = GetComponent<Rigidbody>();
+        controller = GameObject.Find("gameController");
     }
 
     // Update is called once per frame
     void Update()
     {
         Movement();
+        healthBar.transform.GetComponent<Slider>().value = curHP;
     }
 
     public void Movement()
@@ -51,11 +56,15 @@ public class player : MonoBehaviour
     {
         if(collision.collider.tag == "Good")
         {
+            controller.GetComponent<controller>().goodspawn = true;
+            score++;
             Collider.Destroy(collision.gameObject);
         }
 
         if (collision.collider.tag == "Bad")
         {
+            controller.GetComponent<controller>().badspawn = true;
+            curHP--;
             Collider.Destroy(collision.gameObject);
         }
     }
